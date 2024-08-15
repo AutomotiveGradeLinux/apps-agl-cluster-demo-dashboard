@@ -107,7 +107,7 @@ DashboardGaugeStyle {
             anchors.topMargin: 20
             visible: valueSource.displayNumericSpeeds === true
 
-            readonly property int rpmInt: valueSource.rpm
+            readonly property int rpmInt: valueSource.rpm / 1000
         }
         Text {
             text: "x1000"
