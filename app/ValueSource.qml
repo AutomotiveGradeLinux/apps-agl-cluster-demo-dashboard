@@ -55,7 +55,7 @@ Item {
     property real kph: 0
     property bool mphDisplay: false
     property real speedScaling: mphDisplay == true ? 0.621504 : 1.0
-    property real rpm: 1
+    property int rpm: 1
     property real fuel: 0.85
     property string gear: {
         var g;
@@ -144,7 +144,7 @@ Item {
                 }
             } else if (path === "Vehicle.Powertrain.CombustionEngine.Speed") {
 	        if(!runAnimation) {
-                    valueSource.rpm = parseFloat(value) / 1000
+                    valueSource.rpm = parseInt(value)
                 }
             } else if (path === "Vehicle.Cabin.SteeringWheel.Switches.CruiseEnable" && value === "true") {
                 if(valueSource.cruiseEnabled) {
@@ -221,8 +221,8 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    from: 1
-                    to: 6.1
+                    from: 1000
+                    to: 6100
                     duration: 3000
                 }
             }
@@ -240,8 +240,8 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    from: 6
-                    to: 2.4
+                    from: 6000
+                    to: 2400
                     duration: 600
                 }
             }
@@ -257,7 +257,7 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 5.6
+                    to: 5600
                     duration: 3000
                 }
             }
@@ -274,7 +274,7 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 2.3
+                    to: 2300
                     duration: 600
                 }
             }
@@ -290,7 +290,7 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 5.1
+                    to: 5100
                     duration: 3000
                 }
             }
@@ -307,7 +307,7 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 2.2
+                    to: 2200
                     duration: 600
                 }
             }
@@ -324,7 +324,7 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 6.2
+                    to: 6200
                     duration: 3000
                 }
             }
@@ -342,7 +342,7 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 5.5
+                    to: 5500
                     duration: 6000
                 }
             }
@@ -367,7 +367,7 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 5.2
+                    to: 5200
                     duration: 10000
                 }
             }
@@ -391,7 +391,7 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 5.5
+                    to: 5500
                     duration: 10000
                 }
             }
@@ -412,7 +412,7 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 3.1
+                    to: 3100
                     duration: 5000
                 }
             }
@@ -422,7 +422,7 @@ Item {
                 target: valueSource
                 property: "rpm"
                 easing.type: Easing.InOutSine
-                to: 5.5
+                to: 5500
                 duration: 600
             }
 
@@ -438,7 +438,7 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 2.6
+                    to: 2600
                     duration: 5000
                 }
             }
@@ -448,7 +448,7 @@ Item {
                 target: valueSource
                 property: "rpm"
                 easing.type: Easing.InOutSine
-                to: 6.3
+                to: 6300
                 duration: 600
             }
 
@@ -464,7 +464,7 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 2.6
+                    to: 2600
                     duration: 5000
                 }
             }
@@ -473,7 +473,7 @@ Item {
                 target: valueSource
                 property: "rpm"
                 easing.type: Easing.InOutSine
-                to: 6.5
+                to: 6500
                 duration: 600
             }
 
@@ -490,7 +490,7 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 1
+                    to: 1000
                     duration: 4500
                 }
             }

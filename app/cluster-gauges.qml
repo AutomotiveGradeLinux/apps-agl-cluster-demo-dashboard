@@ -410,7 +410,7 @@ ApplicationWindow {
             height: width
 
             maximumValue: 8
-            value: valueSource.rpm
+            value: valueSource.rpm / 1000.0
 
             style: TachometerStyle {}
         }
