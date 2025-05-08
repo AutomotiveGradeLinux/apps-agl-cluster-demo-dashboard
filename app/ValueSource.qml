@@ -1,7 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2016 The Qt Company Ltd.
-** Copyright (C) 2018, 2019 Konsulko Group
+** Copyright (C) 2018, 2019, 2025 Konsulko Group
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the examples of the Qt Toolkit.
@@ -48,15 +48,17 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
+// SPDX-License-Identifier: BSD-3-Clause
 
 import QtQuick 2.2
+
 Item {
     id: valueSource
     property real kph: 0
     property bool mphDisplay: false
     property real speedScaling: mphDisplay == true ? 0.621504 : 1.0
-    property int rpm: 1
-    property real fuel: 0.85
+    property int rpm: 600
+    property real fuel: 85
     property string gear: {
         var g;
         if (kph < 30) {
@@ -86,7 +88,7 @@ Item {
     property bool start: true
     property int turnSignal: -1
     property bool startUp: false
-    property real temperature: 0.6
+    property real temperature: 72
     property bool cruiseEnabled: false
     property bool cruiseSet: false
     property bool laneDepartureWarnEnabled: false
@@ -177,6 +179,7 @@ Item {
 
     SequentialAnimation {
         running: runAnimation
+        //running: false
         loops: 1
 
         // We want a small pause at the beginning, but we only want it to happen once.
@@ -199,9 +202,11 @@ Item {
                 property: "startUp"
                 value: true
             }
+
             PauseAnimation {
                 duration: 1000
             }
+
             PropertyAction {
                 target: valueSource
                 property: "startUp"
@@ -221,18 +226,18 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    from: 1000
+                    from: 600
                     to: 6100
                     duration: 3000
                 }
             }
+
             ParallelAnimation {
                 // We changed gears so we lost a bit of speed.
                 NumberAnimation {
                     target: valueSource
                     property: "kph"
                     easing.type: Easing.InOutSine
-                    from: 30
                     to: 26
                     duration: 600
                 }
@@ -240,11 +245,11 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    from: 6000
                     to: 2400
                     duration: 600
                 }
             }
+
             ParallelAnimation {
                 NumberAnimation {
                     target: valueSource
@@ -261,6 +266,7 @@ Item {
                     duration: 3000
                 }
             }
+
             ParallelAnimation {
                 // We changed gears so we lost a bit of speed.
                 NumberAnimation {
@@ -278,6 +284,7 @@ Item {
                     duration: 600
                 }
             }
+
             ParallelAnimation {
                 NumberAnimation {
                     target: valueSource
@@ -294,6 +301,7 @@ Item {
                     duration: 3000
                 }
             }
+
             ParallelAnimation {
                 // We changed gears so we lost a bit of speed.
                 NumberAnimation {
@@ -342,7 +350,7 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 5500
+                    to: 4500
                     duration: 6000
                 }
             }
@@ -367,7 +375,7 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 5200
+                    to: 3200
                     duration: 10000
                 }
             }
@@ -391,7 +399,7 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 5500
+                    to: 3400
                     duration: 10000
                 }
             }
@@ -399,6 +407,14 @@ Item {
             // Start downshifting.
 
             // Fifth to fourth gear.
+            NumberAnimation {
+                target: valueSource
+                property: "rpm"
+                easing.type: Easing.InOutSine
+                to: 3800
+                duration: 600
+            }
+
             ParallelAnimation {
                 NumberAnimation {
                     target: valueSource
@@ -412,7 +428,7 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 3100
+                    to: 3000
                     duration: 5000
                 }
             }
@@ -422,7 +438,7 @@ Item {
                 target: valueSource
                 property: "rpm"
                 easing.type: Easing.InOutSine
-                to: 5500
+                to: 3400
                 duration: 600
             }
 
@@ -438,7 +454,7 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 2600
+                    to: 2200
                     duration: 5000
                 }
             }
@@ -448,7 +464,7 @@ Item {
                 target: valueSource
                 property: "rpm"
                 easing.type: Easing.InOutSine
-                to: 6300
+                to: 2400
                 duration: 600
             }
 
@@ -464,20 +480,20 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 2600
+                    to: 1800
                     duration: 5000
                 }
             }
 
+            // Second to first gear.
             NumberAnimation {
                 target: valueSource
                 property: "rpm"
                 easing.type: Easing.InOutSine
-                to: 6500
+                to: 1500
                 duration: 600
             }
 
-            // Second to first gear.
             ParallelAnimation {
                 NumberAnimation {
                     target: valueSource
@@ -490,7 +506,7 @@ Item {
                     target: valueSource
                     property: "rpm"
                     easing.type: Easing.InOutSine
-                    to: 1000
+                    to: 600
                     duration: 4500
                 }
             }

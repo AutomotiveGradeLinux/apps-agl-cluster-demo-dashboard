@@ -36,5 +36,6 @@
         <file>AGL_Icons_Seatbelt.svg</file>
         <file>AGL_Icons_Seatbelt_red.svg</file>
         <file>AGL_Icons_Seatbelt_yellow.svg</file>
+        <file>carbon_icons/temperature--water.svg</file>
     </qresource>
 </RCC>

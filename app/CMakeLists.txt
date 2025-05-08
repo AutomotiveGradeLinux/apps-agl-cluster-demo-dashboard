@@ -1,5 +1,5 @@
 ###########################################################################
-# Copyright 2018,2019,2022 Konsulko Group
+# Copyright 2018,2019,2022,2025 Konsulko Group
 #
 # Author: Scott Murray <scott.murray@konsulko.com>
 #
@@ -29,12 +29,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(Qt5 COMPONENTS Core Gui QuickControls2 QuickWidgets REQUIRED)
-find_package(Qt5Gui ${QT_MIN_VERSION} CONFIG REQUIRED Private)
+find_package(Qt6 COMPONENTS Core Gui QuickControls2 QuickWidgets REQUIRED)
+find_package(Qt6Gui ${QT_MIN_VERSION} CONFIG REQUIRED Private)
 find_package(PkgConfig REQUIRED)
 find_program(WAYLAND_SCANNER_EXECUTABLE NAMES wayland-scanner)
 
-qt5_add_resources(RESOURCES cluster-gauges.qrc images/images.qrc)
+qt6_add_resources(RESOURCES cluster-dashboard.qrc images/images.qrc widgets/widgets.qrc)
 
 add_custom_command(
 	OUTPUT  agl-shell-client-protocol.h
@@ -72,14 +72,14 @@ pkg_check_modules(WAYLAND_CLIENT REQUIRED wayland-client)
 pkg_check_modules(QTAPPFW_VEHICLE_SIGNALS REQUIRED qtappfw-vehicle-signals)
 
 include_directories(
-	include_directories(${Qt5Gui_PRIVATE_INCLUDE_DIRS})
+	include_directories(${Qt6Gui_PRIVATE_INCLUDE_DIRS})
 	${QTAPPFW_VEHICLE_SIGNALS_INCLUDE_DIRS}
 	${GLIB_INCLUDE_DIRS}
 )
 
 target_link_libraries(${PROJECT_NAME}
-	Qt5::QuickControls2
-	Qt5::QuickWidgets
+	Qt6::QuickControls2
+	Qt6::QuickWidgets
 	${QTAPPFW_VEHICLE_SIGNALS_LIBRARIES}
 	${GLIB_LDFLAGS}
 	${WAYLAND_CLIENT_LIBRARIES}

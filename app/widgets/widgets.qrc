@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/widgets">
+        <file>Gauge/Gauge.qml</file>
+        <file>Gauge/RPMGauge.qml</file>
+        <file>Gauge/SpeedGauge.qml</file>
+        <file>Gauge/assets/Ellipse 1.svg</file>
+        <file>HalfGauge/HalfGauge.qml</file>
+        <file>HalfGauge/CoolantGauge.qml</file>
+        <file>HalfGauge/FuelGauge.qml</file>
+    </qresource>
+</RCC>
