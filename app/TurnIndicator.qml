@@ -47,6 +47,7 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
+// SPDX-License-Identifier: BSD-3-Clause
 
 
 import QtQuick 2.2

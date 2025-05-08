@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2016 The Qt Company Ltd.
- * Copyright (C) 2018, 2019 Konsulko Group
+ * Copyright (C) 2018,2019,2020,2022,2025 Konsulko Group
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -191,7 +191,7 @@ int main(int argc, char *argv[])
 	VehicleSignalsConfig vsConfig(myname);
 	context->setContextProperty("VehicleSignals", new VehicleSignals(vsConfig));
 
-	QQmlComponent bg_comp(&engine, QUrl("qrc:/cluster-gauges.qml"));
+	QQmlComponent bg_comp(&engine, QUrl("qrc:/cluster-dashboard.qml"));
 	qDebug() << bg_comp.errors();
 	struct wl_surface *bg = create_component(native, &bg_comp, screen, &qobj_bg);
 

@@ -1,7 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2016 The Qt Company Ltd.
-** Copyright (C) 2018, 2019 Konsulko Group
+** Copyright (C) 2018, 2019, 2025 Konsulko Group
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the examples of the Qt Toolkit.
@@ -48,18 +48,20 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
+// SPDX-License-Identifier: BSD-3-Clause
 
 /*
  * NOTE: Originally written from scratch, but enough code was eventually
- *       pasted in from the Qt dashboard.qml example that its license text
+ *       pasted in from the Qt5 dashboard.qml example that its license text
  *       has been adopted.
  */
 
 import QtQuick 2.2
 import QtQuick.Window 2.1
-import QtQuick.Controls 1.4
-import QtQuick.Controls.Styles 1.4
-import QtQuick.Extras 1.4
+import QtQuick.Controls 2.0
+import QtQuick.Controls.Basic
+import "widgets/Gauge"
+import "widgets/HalfGauge"
 
 ApplicationWindow {
     id: root
@@ -67,10 +69,8 @@ ApplicationWindow {
     height: 1080
     visible: true
     flags: Qt.FramelessWindowHint
-    style: ApplicationWindowStyle {
-        background: Rectangle {
-            color: "black"
-        }
+    background: Rectangle {
+        color: "black"
     }
 
     ValueSource {
@@ -383,17 +383,18 @@ ApplicationWindow {
         width: 600
         height: width
 
-        CircularGauge {
+        SpeedGauge {
             id: accelerometer
             x: (parent.width - width) / 2
             //y: (parent.height - height) / 2
             width: parent.width * 0.9
             height: width
 
-            maximumValue: valueSource.mphDisplay ? 140 : 220
+            unit: valueSource.mphDisplay ? "MPH" : "km/h"
+            maxValue: valueSource.mphDisplay ? 120 : 200
+            ticks: valueSource.mphDisplay ? 12 : 10
             value: valueSource.kph * valueSource.speedScaling
-
-            style: DashboardGaugeStyle {}
+            borderColor: "grey"
         }
     }
 
@@ -403,63 +404,33 @@ ApplicationWindow {
         width: 600
         height: width
 
-        CircularGauge {
+        RPMGauge {
             id: tachometer
             x: (parent.width - width) / 2
             width: parent.width * 0.9
             height: width
 
-            maximumValue: 8
-            value: valueSource.rpm / 1000.0
-
-            style: TachometerStyle {}
+            value: valueSource.rpm
+            borderColor: "grey"
         }
 
-        CircularGauge {
+        FuelGauge {
             id: fuelGauge
-            value: valueSource.fuel
-            maximumValue: 1
-            y: parent.width * 0.85
+            y: parent.width * 0.9
             width: parent.width * 0.45
             height: parent.height * 0.25
 
-            style: IconGaugeStyle {
-                id: fuelGaugeStyle
-
-                icon: "./images/fuel-icon.png"
-                minWarningColor: Qt.rgba(0.5, 0, 0, 1)
-
-                tickmarkLabel: Text {
-                    color: "white"
-                    visible: styleData.value === 0 || styleData.value === 1
-                    font.pixelSize: fuelGaugeStyle.toPixels(0.225)
-                    text: styleData.value === 0 ? "E" : (styleData.value === 1 ? "F" : "")
-                }
-            }
+            value: valueSource.fuel
         }
 
-	CircularGauge {
+        CoolantGauge {
             id: tempGauge
-            value: valueSource.temperature
-            maximumValue: 1
             x: parent.width * 0.55
-            y: parent.width * 0.85
+            y: parent.width * 0.9
             width: parent.width * 0.45
             height: parent.height * 0.25
 
-            style: IconGaugeStyle {
-                id: tempGaugeStyle
-
-                icon: "./images/temperature-icon.png"
-                maxWarningColor: Qt.rgba(0.5, 0, 0, 1)
-
-                tickmarkLabel: Text {
-                    color: "white"
-                    visible: styleData.value === 0 || styleData.value === 1
-                    font.pixelSize: tempGaugeStyle.toPixels(0.225)
-                    text: styleData.value === 0 ? "C" : (styleData.value === 1 ? "H" : "")
-                }
-            }
+            value: valueSource.temperature
         }
     }
 
