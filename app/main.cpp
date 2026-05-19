@@ -26,7 +26,7 @@
 #include <QtQml/qqml.h>
 #include <QQuickWindow>
 #include <QtQuickControls2/QQuickStyle>
-#include <qpa/qplatformnativeinterface.h>
+#include QT_QPA_HEADER
 #include <QTimer>
 #include <glib.h>
 #include <QDebug>
