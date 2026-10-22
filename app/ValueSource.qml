@@ -107,11 +107,11 @@ Item {
     Connections {
         target: VehicleSignals
 
-        onConnected: {
+        function onConnected() {
 	    VehicleSignals.authorize()
         }
 
-        onAuthorized: {
+        function onAuthorized() {
 	    VehicleSignals.subscribe("Vehicle.Speed")
 	    VehicleSignals.subscribe("Vehicle.Powertrain.CombustionEngine.Speed")
 	    VehicleSignals.subscribe("Vehicle.Cabin.SteeringWheel.Switches.CruiseEnable")
@@ -124,7 +124,7 @@ Item {
 	    VehicleSignals.subscribe("Vehicle.Cabin.Infotainment.HMI.DistanceUnit")
 	}
 
-        onGetSuccessResponse: {
+        function onGetSuccessResponse(path, value) {
             //console.log("response path = " + path + ", value = " + value)
             if (path === "Vehicle.Cabin.Infotainment.HMI.DistanceUnit") {
                 if (value === "km") {
@@ -135,7 +135,7 @@ Item {
             }
         }
 
-        onSignalNotification: {
+        function onSignalNotification(path, value) {
             //console.log("signal path = " + path + ", value = " + value)
             if (path === "Vehicle.Speed") {
                 // units are always km/h
