@@ -36,6 +36,8 @@ dashboard_dep = [
 
 dashboard_resources = [
   'cluster-dashboard.qrc',
+  'images/images.qrc',
+  'widgets/widgets.qrc',
 ]
 
 resource_files = qt.compile_resources(sources: dashboard_resources)
